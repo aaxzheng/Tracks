@@ -5,7 +5,6 @@ class Flash
     @req = req
     cookies = req.cookies["_rails_lite_app_flash"]
     if cookies
-      # @cookie = JSON.parse(cookies)
       @now_cookie = JSON.parse(cookies)
     else
       @now_cookie = {}

@@ -1,7 +1,6 @@
-require_relative '02_searchable'
+require_relative 'searchable'
 require 'active_support/inflector'
 
-# Phase IIIa
 class AssocOptions
   attr_accessor(
     :foreign_key,
@@ -70,9 +69,14 @@ module Associatable
     @assoc_options ||= {}
   end
 
-end
+  def has_one_through(name, through_name, source_name)
+    through_options = self.assoc_options[through_name]
+    define_method(name) do
+      source_options = through_options.model_class.assoc_options[source_name]
+      through = self.send(through_options.foreign_key)
+      source = self.send(source_options.primary_key)
+      source_options.model_class.where(through => source).first
+    end
+  end
 
-class SQLObject
-  extend Associatable
-  # Mixin Associatable here...
 end

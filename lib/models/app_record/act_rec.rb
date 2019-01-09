@@ -1,11 +1,12 @@
 require_relative 'db_connection'
 require 'active_support/inflector'
+require_relative 'searchable'
+require_relative 'associatable'
 require 'byebug'
-# NB: the attr_accessor we wrote in phase 0 is NOT used in the rest
-# of this project. It was only a warm up.
 
 class SQLObject
-
+extend Searchable
+extend Associatable
   def self.columns
     if @columns
       @columns
@@ -62,25 +63,22 @@ class SQLObject
   end
 
   def self.find(id)
-    # debugger
     parameters = DBConnection.execute(<<-SQL ,id)
       SELECT
         *
       FROM
         #{table_name}
       WHERE
-        id = ?
+        #{table_name}.id = ?
       LIMIT
         1
     SQL
-    # debugger
   return nil if parameters.empty?
   self.parse_all(parameters).first
   end
 
   def initialize(params = {})
     params.each do |k,val|
-      # debugger
       if self.class.columns.include?(k.to_sym)
         self.send("#{k.to_sym}=",val)
       else
@@ -98,7 +96,6 @@ class SQLObject
   end
 
   def insert
-    # columns = self.class.columns.drop(1)
     col_names = self.class.columns.map(&:to_s).join(", ")
     questions = (["?"]* self.class.columns.length).join(",")
     DBConnection.execute(<<-SQL, *attribute_values)
@@ -111,7 +108,6 @@ class SQLObject
   end
 
   def update
-    # debugger
     sets = self.class.columns.map {|column| "#{column} = ?"}.join(",")
 
     DBConnection.execute(<<-SQL, *attribute_values)
