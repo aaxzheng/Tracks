@@ -45,3 +45,18 @@ class Train < SQLObject
   class_name: 'Employee'
 end
 ````
+## Controller Component
+The controller side of the MvC framework handles requests and responses from the server through the use of the middleware, Rack. This allows information from the model to be displayed in several views created by the user. Controller classes are given functionality by inheriting from the parent class, Controller Base, which covers basic methods like those found in Ruby on Rails' ApplicationController.
+
+Sample Controller
+````ruby 
+class EmployeesController < ControllerBase
+  def index
+    @employees = Employee.all
+    render :index
+  end
+end
+````
+This controller can utilize a view with the file name "index.html.erb" found in the views folder and render information passed from the model as such.
+
+
