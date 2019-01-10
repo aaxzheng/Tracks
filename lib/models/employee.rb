@@ -1,10 +1,10 @@
 require_relative './app_record/act_rec'
-DBConnection.open("./app_record/trains.db")
+DBConnection.open("../../db/trains.db")
 
 class Employee < SQLObject
   attr_accessor :id,:name,:train_id
 
-belongs_to :train
+  belongs_to :train
 
 end
 

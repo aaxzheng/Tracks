@@ -49,9 +49,18 @@ class ControllerBase
   end
 
   def render(template_name)
-    rendered = File.read("views/#{self.class.to_s.underscore}/#{template_name}.html.erb")
-    content = ERB.new(rendered).result(binding)
-    render_content(content,'text/html')
+    dir_path = File.dirname(__FILE__)
+     template_fname = File.join(
+       dir_path, "..",
+       "views", self.class.name.underscore, "#{template_name}.html.erb"
+     )
+
+     template_code = File.read(template_fname)
+
+     render_content(
+       ERB.new(template_code).result(binding),
+       "text/html"
+     )
   end
 
   def session

@@ -1,0 +1,14 @@
+<h1>Employees</h1>
+
+<ul>
+  <% @employees.each do |employee| %>
+  <li>
+    <ul>
+        Employee: <%= employee.name %>
+      <li>
+        Train: <%= employee.train.name %>
+      </li>
+    </ul>
+  </li>
+  <% end %>
+</ul>
