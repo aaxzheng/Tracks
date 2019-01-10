@@ -16,6 +16,3 @@ class Train < SQLObject
   foreign_key: :train_id,
   class_name: 'Employee'
 end
-
-puts Employee.all[0].train.name
-puts Train.all[1].employees[0].name

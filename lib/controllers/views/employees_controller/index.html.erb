@@ -3,12 +3,7 @@
 <ul>
   <% @employees.each do |employee| %>
   <li>
-    <ul>
-        Employee: <%= employee.name %>
-      <li>
-        Train: <%= employee.train.name %>
-      </li>
-    </ul>
+      <%= employee.name %>
   </li>
   <% end %>
 </ul>
