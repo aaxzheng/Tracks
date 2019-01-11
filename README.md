@@ -64,12 +64,30 @@ end
 ````
 This controller can utilize a view with the file name "index.html.erb" found in the views folder and render information passed from the models through Rack.
 
+We can use a router to dictate which view is rendered by changing the path of the browser and using regex to ensure that a view corresponds with specific paths.
+
+Router
+````ruby
+router = Router.new
+router.draw do
+  get Regexp.new("^/employees$"), EmployeesController, :index
+  get Regexp.new("^/$"), EmployeesController, :start
+  post Regexp.new("^/employees$"), EmployeesController, :create
+  get Regexp.new("^/employees/new$"), EmployeesController, :new
+  get Regexp.new("^/employees/(?<id>\\d+)$"), EmployeesController, :show
+  get Regexp.new("^/trains$"), TrainsController, :index
+  get Regexp.new("^/trains/(?<id>\\d+)$"), TrainsController, :show
+  get Regexp.new("^/trains/new$"), TrainsController, :new
+  post Regexp.new("^/trains$"), TrainsController, :create
+end
+````
+
 Rack Middleware
 ````ruby
 app = Proc.new do |env|
   req = Rack::Request.new(env)
   res = Rack::Response.new
-  EmployeesController.new(req, res).index
+  router.run(req, res)
   res.finish
 end
 
