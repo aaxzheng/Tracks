@@ -64,12 +64,30 @@ end
 ````
 This controller can utilize a view with the file name "index.html.erb" found in the views folder and render information passed from the models through Rack.
 
-Rack Middleware
+We can use a router to dictate which view is rendered by changing the path of the browser and using regex to ensure that a view corresponds with specific paths.
+
+Router
+````ruby
+router = Router.new
+router.draw do
+  get Regexp.new("^/employees$"), EmployeesController, :index
+  get Regexp.new("^/$"), EmployeesController, :start
+  post Regexp.new("^/employees$"), EmployeesController, :create
+  get Regexp.new("^/employees/new$"), EmployeesController, :new
+  get Regexp.new("^/employees/(?<id>\\d+)$"), EmployeesController, :show
+  get Regexp.new("^/trains$"), TrainsController, :index
+  get Regexp.new("^/trains/(?<id>\\d+)$"), TrainsController, :show
+  get Regexp.new("^/trains/new$"), TrainsController, :new
+  post Regexp.new("^/trains$"), TrainsController, :create
+end
+````
+
+Rack Middleware serves to handle the responses between the client and server.
 ````ruby
 app = Proc.new do |env|
   req = Rack::Request.new(env)
   res = Rack::Response.new
-  EmployeesController.new(req, res).index
+  router.run(req, res)
   res.finish
 end
 
@@ -80,23 +98,68 @@ Rack::Server.start(
 ````
 Simple View (index)
 ````html
-<h1>Employees</h1>
+<div class="index">
+<h1>Trains</h1>
 
 <ul>
-  <% @employees.each do |employee| %>
+  <% @trains.each do |train| %>
   <li>
-    <ul>
-        Employee: <%= employee.name %>
-      <li>
-        Train: <%= employee.train.name %>
-      </li>
-    </ul>
+    <a href= "<%="/trains/#{train.id}"%>"> <%= train.name %> </a>
   </li>
   <% end %>
 </ul>
+
+
+<a href="/trains/new"> Add a new Train </a>
+<br>
+<a href="/employees">Move to Employee Index</a>
+</div>
+
 ````
 Final Result from localhost:3000
 
+![image](https://user-images.githubusercontent.com/40276721/51061687-1ca62500-15c2-11e9-9b0b-ad558bef4e79.png)
 
-![image](https://user-images.githubusercontent.com/40276721/50978025-7d9a0400-14c1-11e9-86fe-e5911cd657eb.png)
+It is also possible to add new entries to the database using forms.
+Creation Form (Employees)
+````html 
+<h2>New Employee</h2>
+
+<form action="/employees" method="post">
+
+  <label>
+    Name
+    <input type="text" name="employees[name]" value="<%= @employee.name %>">
+  </label>
+<p></p>
+<br>
+  <label>
+    What Train did they work on?
+    <br>
+    <select name="employees[train_id]">
+      <% @trains.each do |train| %>
+      <option value="<%= train.id %>"> <%= train.name %></option>
+      <% end %>
+      </select>
+  </label>
+<p></p>
+<br>
+  <input type="submit" value="Submit New Employee Data">
+</form>
+<p></p>
+<a href="/employees">Go Back</a>
+
+````
+ Before adding from localhost:3000/employees
+ 
+ ![image](https://user-images.githubusercontent.com/40276721/51062047-63484f00-15c3-11e9-9c62-ec0e388958bb.png)
+
+ Creation form
+
+![image](https://user-images.githubusercontent.com/40276721/51062080-7eb35a00-15c3-11e9-97e7-4722bb0f076e.png)
+ 
+ After adding from localhost:3000/employees/new
+
+![image](https://user-images.githubusercontent.com/40276721/51062099-92f75700-15c3-11e9-8c31-c4a99d69acb5.png)
+
 
