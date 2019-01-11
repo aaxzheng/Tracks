@@ -80,17 +80,13 @@ Rack::Server.start(
 ````
 Simple View (index)
 ````html
-<h1>Employees</h1>
+<div class="index">
+<h1>Trains</h1>
 
 <ul>
-  <% @employees.each do |employee| %>
+  <% @trains.each do |train| %>
   <li>
-    <ul>
-        Employee: <%= employee.name %>
-      <li>
-        Train: <%= employee.train.name %>
-      </li>
-    </ul>
+    <a href= "<%="/trains/#{train.id}"%>"> <%= train.name %> </a>
   </li>
   <% end %>
 </ul>
