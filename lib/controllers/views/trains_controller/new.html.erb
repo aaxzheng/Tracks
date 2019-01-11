@@ -1,6 +1,8 @@
 <head>
 <title>Tracks</title>
 </head>
+<div style="width:40%;height:auto;border:1px solid black;display:flex;margin:0 auto;flex-direction:column;align-items:center;padding:20px;">
+
 <h2>New Train</h2>
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>
@@ -35,3 +37,5 @@
 
 
 <a href="/trains">Go Back</a>
+
+</div>

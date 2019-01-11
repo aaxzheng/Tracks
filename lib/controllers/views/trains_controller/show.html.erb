@@ -1,6 +1,7 @@
 <head>
 <title>Tracks</title>
 </head>
+<div style="width:auto;height:auto;border:1px solid black;display:flex;margin:0 auto;flex-direction:column;align-items:center;padding:20px;">
 
 <h1><%= @train.name  %></h1>
 <span> Created by <%= @train.maker %> in <%= @train.year %> </span>
@@ -14,3 +15,5 @@
 <% end %>
 </ul>
 <a href="<%="/trains"%>">Back to Train Index</a>
+
+</div>
