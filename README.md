@@ -82,7 +82,7 @@ router.draw do
 end
 ````
 
-Rack Middleware
+Rack Middleware serves to handle the responses between the client and server.
 ````ruby
 app = Proc.new do |env|
   req = Rack::Request.new(env)
@@ -119,4 +119,41 @@ Simple View (index)
 Final Result from localhost:3000
 
 ![image](https://user-images.githubusercontent.com/40276721/51061687-1ca62500-15c2-11e9-9b0b-ad558bef4e79.png)
+
+It is also possible to add new entries to the database using forms.
+Creation Form (Employees)
+````html 
+<h2>New Employee</h2>
+
+<form action="/employees" method="post">
+
+  <label>
+    Name
+    <input type="text" name="employees[name]" value="<%= @employee.name %>">
+  </label>
+<p></p>
+<br>
+  <label>
+    What Train did they work on?
+    <br>
+    <select name="employees[train_id]">
+      <% @trains.each do |train| %>
+      <option value="<%= train.id %>"> <%= train.name %></option>
+      <% end %>
+      </select>
+  </label>
+<p></p>
+<br>
+  <input type="submit" value="Submit New Employee Data">
+</form>
+<p></p>
+<a href="/employees">Go Back</a>
+
+````
+ Before adding from localhost:3000/employees
+ 
+ Creation form
+ 
+ After adding from localhost:3000/employees/new
+
 
