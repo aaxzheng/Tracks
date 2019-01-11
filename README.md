@@ -152,8 +152,14 @@ Creation Form (Employees)
 ````
  Before adding from localhost:3000/employees
  
+ ![image](https://user-images.githubusercontent.com/40276721/51062047-63484f00-15c3-11e9-9c62-ec0e388958bb.png)
+
  Creation form
+
+![image](https://user-images.githubusercontent.com/40276721/51062080-7eb35a00-15c3-11e9-97e7-4722bb0f076e.png)
  
  After adding from localhost:3000/employees/new
+
+![image](https://user-images.githubusercontent.com/40276721/51062099-92f75700-15c3-11e9-8c31-c4a99d69acb5.png)
 
 
