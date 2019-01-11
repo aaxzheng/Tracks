@@ -1,0 +1,19 @@
+<head>
+<title>Tracks</title>
+</head>
+<div class="index">
+<h1>Trains</h1>
+
+<ul>
+  <% @trains.each do |train| %>
+  <li>
+    <a href= "<%="/trains/#{train.id}"%>"> <%= train.name %> </a>
+  </li>
+  <% end %>
+</ul>
+
+
+<a href="/trains/new"> Add a new Train </a>
+<br>
+<a href="/employees">Move to Employee Index</a>
+</div>

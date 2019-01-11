@@ -35,7 +35,7 @@ class ControllerBase
       raise "Already Redirected"
     end
     @already_built = true
-    @session.store_session(@res)
+    session.store_session(@res)
   end
 
   def render_content(content, content_type)

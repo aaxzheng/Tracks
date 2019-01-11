@@ -14,7 +14,7 @@ COMMIT;
 
 CREATE TABLE employees(
 id INTEGER PRIMARY KEY,
-name TEXT NOT NULL,
+name VARCHAR(255),
 train_id INTEGER NOT NULL,
 
 FOREIGN_KEY(train_id) REFERENCES train(id)

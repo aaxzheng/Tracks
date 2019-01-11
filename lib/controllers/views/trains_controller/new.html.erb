@@ -1,0 +1,33 @@
+<head>
+<title>Tracks</title>
+</head>
+<h2>New Train</h2>
+
+<form action="/trains" method="post">
+
+  <label>
+    Name of the Train
+    <br>
+    <input type="text" name="trains[name]" value="<%= @train.name %>">
+  </label>
+<p></p>
+<br>
+  <label>
+    Who made this train?
+    <br>
+    <input type="text" name="trains[maker]" value="<%= @train.maker %>">
+  </label>
+<p></p>
+<br>
+<label>
+  When did they make it?
+  <br>
+  <input type="text" name="trains[year]" value="<%= @train.maker %>">
+</label>
+  <br>
+  <p></p>
+  <input type="submit" value="Submit New Train Data">
+</form>
+
+
+<a href="/trains">Go Back</a>

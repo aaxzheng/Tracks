@@ -4,7 +4,7 @@ Tracks is a lightweight MvC framework that utilizes self-made ORM and controller
 ## How do you use Tracks?
 1. Bundle Install the gemfile
 2. Move over to the controllers folder within lib 
-3. Run ```` bundle exec ruby employees_controller.rb ```` 
+3. Run ```` bundle exec ruby tracks_controller.rb ```` 
 4. Open a web browser and navigate to localhost:3000
 ## ORM Component
 The object relational mapping component simplifies and parses information from databases through SQL queries and forms methods and classes to utilize the information. A key feature of this ORM are associations much like those found in ActiveRecord.

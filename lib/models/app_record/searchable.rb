@@ -13,7 +13,6 @@ module Searchable
       WHERE
         #{wheres}
     SQL
-    p parameters
     parse_all(parameters)
   end
 end

@@ -1,0 +1,7 @@
+<head>
+<title>Tracks</title>
+</head>
+<h1><%= @employee.name %></h1>
+<span>This employee worked on <a href="<%="/trains/#{@employee.train.id}"%>"><%= @employee.train.name %></a> </span>
+<br>
+<a href="/employees">Back to Employee Index</a>

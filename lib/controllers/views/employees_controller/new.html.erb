@@ -1,0 +1,29 @@
+<head>
+<title>Tracks</title>
+</head>
+
+<h2>New Employee</h2>
+
+<form action="/employees" method="post">
+
+  <label>
+    Name
+    <input type="text" name="employees[name]" value="<%= @employee.name %>">
+  </label>
+<p></p>
+<br>
+  <label>
+    What Train did they work on?
+    <br>
+    <select name="employees[train_id]">
+      <% @trains.each do |train| %>
+      <option value="<%= train.id %>"> <%= train.name %></option>
+      <% end %>
+      </select>
+  </label>
+<p></p>
+<br>
+  <input type="submit" value="Submit New Employee Data">
+</form>
+<p></p>
+<a href="/employees">Go Back</a>

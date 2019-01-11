@@ -1,0 +1,16 @@
+<head>
+<title>Tracks</title>
+</head>
+
+<h1><%= @train.name  %></h1>
+<span> Created by <%= @train.maker %> in <%= @train.year %> </span>
+<p></p>
+<span>This train has been worked on by...</span>
+<ul>
+<% @train.employees.each do |employee| %>
+<li> <a href="<%="/employees/#{employee.id}"%>">
+  <%= employee.name %>
+</a></li>
+<% end %>
+</ul>
+<a href="<%="/trains"%>">Back to Train Index</a>

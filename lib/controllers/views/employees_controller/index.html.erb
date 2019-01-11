@@ -1,9 +1,23 @@
+<head>
+  <link rel="stylesheet" href="../../../public/tracks.css"/>
+  <title>Tracks</title>
+</head>
+<body>
+<div class="index">
 <h1>Employees</h1>
 
 <ul>
   <% @employees.each do |employee| %>
   <li>
+    <a href="<%="/employees/#{employee.id}"%>">
       <%= employee.name %>
+    </a>
   </li>
   <% end %>
 </ul>
+
+<a href="/employees/new">Add a New Employee</a>
+<br>
+<a href="/trains">Move to Train Index</a>
+</div>
+</body>
