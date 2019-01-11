@@ -3,7 +3,15 @@
 </head>
 
 <h2>New Employee</h2>
-
+<% if flash[:errors] %>
+<ul>
+  <% flash[:errors].each do |error| %>
+    <li>
+      <%= error %>
+    </li>
+  <% end %>
+</ul>
+<% end %>
 <form action="/employees" method="post">
 
   <label>

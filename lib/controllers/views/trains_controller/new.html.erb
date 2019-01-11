@@ -2,7 +2,11 @@
 <title>Tracks</title>
 </head>
 <h2>New Train</h2>
-
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
 <form action="/trains" method="post">
 
   <label>

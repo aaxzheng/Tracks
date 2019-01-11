@@ -23,6 +23,7 @@ class EmployeesController < ControllerBase
       if @employee.save
         redirect_to "/employees"
       else
+        flash.now[:errors] = @employee.errors
         render :new
       end
     end
@@ -51,6 +52,7 @@ class TrainsController < ControllerBase
       if @train.save
         redirect_to "/trains"
       else
+        flash.now[:errors] = @train.errors
         render :new
       end
     end

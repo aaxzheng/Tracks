@@ -67,6 +67,9 @@ class ControllerBase
     @session ||= Session.new(@req)
   end
 
+  def flash
+    @flash ||= Flash.new(@req)
+  end
 
   def invoke_action(name)
     if protect_from_forgery? && @req.request_method != "GET"
