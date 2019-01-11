@@ -93,6 +93,5 @@ Simple View (index)
 ````
 Final Result from localhost:3000
 
-
-![image](https://user-images.githubusercontent.com/40276721/50978025-7d9a0400-14c1-11e9-86fe-e5911cd657eb.png)
+![image](https://user-images.githubusercontent.com/40276721/51061687-1ca62500-15c2-11e9-9b0b-ad558bef4e79.png)
 
