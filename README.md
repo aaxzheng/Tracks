@@ -90,6 +90,13 @@ Simple View (index)
   </li>
   <% end %>
 </ul>
+
+
+<a href="/trains/new"> Add a new Train </a>
+<br>
+<a href="/employees">Move to Employee Index</a>
+</div>
+
 ````
 Final Result from localhost:3000
 
